@@ -51,50 +51,51 @@ bool twoZero(const int A[], const int left, const int right)
 
 void merge(int A[], const int left, const int middle, const int right)
 {
-    int leftSize = (middle - left);
-    int leftArray[leftSize];
+    int leftSize = middle - left + 1;
     int rightSize = right - middle;
+    int leftArray[leftSize];
     int rightArray[rightSize];
+
     for (int i = 0; i < leftSize; i++)
     {
-        leftArray[i] = A[i];
+        leftArray[i] = A[left + i];
     }
     for (int j = 0; j < rightSize; j++)
     {
-        rightArray[j] = A[j + middle];
+        rightArray[j] = A[j + middle + 1];
     }
-    print(A, right);
     print(leftArray, leftSize);
     print(rightArray, rightSize);
 
     int i = 0;
     int j = 0;
     int k = 0;
-    while (i < leftSize || j < rightSize)
+    while (i < leftSize && j < rightSize)
     {
-        if (leftArray[i] >= rightArray[j])
-        {
-            A[k] = rightArray[j];
-            j++;
-        }
-        else
+        if (leftArray[i] <= rightArray[j])
         {
             A[k] = leftArray[i];
             i++;
         }
+        else
+        {
+            A[k] = rightArray[j];
+            j++;
+        }
         k++;
     }
-    for (; i < leftSize; i++)
+    while (i < leftSize)
     {
         A[k] = leftArray[i];
         k++;
+        i++;
     }
-    for (; j < rightSize; j++)
+    while (j < rightSize)
     {
         A[k] = rightArray[j];
         k++;
+        j++;
     }
-    print(A, right);
 }
 
 int main()
@@ -102,7 +103,9 @@ int main()
     int A[] = {1, 0, 0, 1, 2, 3, -1, -2, 3, 2403, -1234};
     int n = sizeof(A) / sizeof(int);
 
+    print(A, n);
     merge(A, 0, n / 2, n);
+    print(A, n);
 
     return 0;
 }
