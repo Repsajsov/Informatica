@@ -41,14 +41,6 @@ bool twoZero(const int A[], const int left, const int right)
     return (twoZero(A, left, middle) || twoZero(A, middle, right)) ? true : false;
 }
 
-// void mergesort(const int A[], const int left, const int right)
-// {
-//     if (right - left == 1)
-//     {
-//         return;
-//     }
-// }
-
 void merge(int A[], const int left, const int middle, const int right)
 {
     int leftSize = middle - left + 1;
@@ -64,12 +56,10 @@ void merge(int A[], const int left, const int middle, const int right)
     {
         rightArray[j] = A[j + middle + 1];
     }
-    print(leftArray, leftSize);
-    print(rightArray, rightSize);
 
     int i = 0;
     int j = 0;
-    int k = 0;
+    int k = left;
     while (i < leftSize && j < rightSize)
     {
         if (leftArray[i] <= rightArray[j])
@@ -98,13 +88,24 @@ void merge(int A[], const int left, const int middle, const int right)
     }
 }
 
+void mergesort(int A[], const int left, const int right)
+{
+    if (left >= right)
+        return;
+
+    int middle = (right + left) / 2;
+    mergesort(A, left, middle);
+    mergesort(A, middle + 1, right);
+    merge(A, left, middle, right);
+}
+
 int main()
 {
     int A[] = {1, 0, 0, 1, 2, 3, -1, -2, 3, 2403, -1234};
     int n = sizeof(A) / sizeof(int);
 
     print(A, n);
-    merge(A, 0, n / 2, n);
+    mergesort(A, 0, n);
     print(A, n);
 
     return 0;
