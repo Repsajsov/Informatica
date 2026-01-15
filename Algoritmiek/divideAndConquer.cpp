@@ -23,10 +23,20 @@ int search(const int A[], const int left, const int right, const int x)
     }
 }
 
+bool twoZero(const int A[], const int left, const int right)
+{
+    if (right - left == 1)
+        return (A[left] == 0 && A[right] == 0) ? true : false;
+
+    int middle = (left + right) / 2;
+    return (twoZero(A, left, middle) || twoZero(A, middle, right)) ? true : false;
+}
+
 int main()
 {
-    int A[] = {1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 99};
+    int A[] = {1, 0, 0, 1};
     int n = sizeof(A) / sizeof(int);
-    cout << search(A, 0, n, 12);
+
+    cout << twoZero(A, 0, n - 1);
     return 0;
 }
