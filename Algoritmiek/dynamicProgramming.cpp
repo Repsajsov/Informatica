@@ -10,7 +10,15 @@ int fibonacciSlow(const int n) {
     return fibonacciSlow(n - 1) + fibonacciSlow(n - 2);
 }
 
-int fibonacci(const int& n) {
+int fibonacciMemoization(int const n, int M[]) {
+    if (M[n] != -1) return M[n];
+    else if (n == 0) return 0;
+    else if (n == 1) return 1;
+    M[n] = fibonacciMemoization(n - 1, M) + fibonacciMemoization(n - 2, M);
+    return M[n];
+}
+
+int fibonacciDP(const int& n) {
     int F[n + 1];
     F[0] = 0;
     F[1] = 1;
@@ -40,23 +48,6 @@ int longestIncreasingSubArray(const int A[], const int& n) {
 
 // bool hasSubsetSum(int const A[], int const n, int const s) { return false; }
 
-int stairsMemoization(int const n, int M[]) {
-    if (M[n] != -1) return M[n];
-    else if (n == 0) return 1;
-    else if (n == 1) return 1;
-    cout << "Calls with calculations: f(" << n << ")" << endl;
-    M[n] = stairsMemoization(n - 1, M) + stairsMemoization(n - 2, M);
-    return M[n];
-}
-
-int stairsDP(int const n) {
-    int M[n + 1];
-    M[0] = 1;
-    M[1] = 1;
-    for (int i = 2; i <= n; i++) { M[i] = M[i - 1] + M[i - 2]; }
-    return M[n];
-}
-
 int main() {
     // int A[] = {3, 1, 4, 5, 2, 3, 6, 2, 8, 1, 7, 9, 9};
     // int n = sizeof(A) / sizeof(int);
@@ -64,6 +55,6 @@ int main() {
 
     int M[] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     int n = sizeof(M) / sizeof(int);
-    cout << stairsDP(n - 1);
+    cout << fibonacciMemoization(n - 1, M);
     return 0;
 }
