@@ -46,21 +46,48 @@ int longestIncreasingSubArray(const int A[], const int& n) {
     return maxLength;
 }
 
-int minCoins(const int n) {
-    if (n == 1) { return 1; }
-    if (n <= 0) { return 0; }
+int min(const int a, const int b) { return (a < b) ? a : b; }
+int max(const int a, const int b) { return (a > b) ? a : b; }
 
-    int a = 0, b = 0, c = 0;
-    if (n % 10 == 0) {
-        return minCoins(n - 10);
-    } else if (n % 5 == 0) {
-        return minCoins(n - 5);
-    } else {
-        return minCoins(n - 1);
-    }
+int minCoinsHelper(const int n, int seen[]);
+int minCoins(const int n) {
+    int* seen = new int[n + 1];
+    for (int i = 0; i <= n; i++) { seen[i] = -1; }
+    seen[0] = 0;
+
+    int result = minCoinsHelper(n, seen);
+    delete[] seen;
+
+    return result;
+}
+int minCoinsHelper(const int n, int seen[]) {
+    if (n < 0) return INT_MAX / 2;
+    if (seen[n] != -1) return seen[n];
+
+    int a = 1 + minCoinsHelper(n - 1, seen);
+    int b = 1 + minCoinsHelper(n - 5, seen);
+    int c = 1 + minCoinsHelper(n - 10, seen);
+
+    seen[n] = min(min(a, b), c);
+
+    return seen[n];
+}
+int minCoinsDP(const int n) {
+    int s = n / 10;
+    s += (n % 10) / 5;
+    s += (n % 5) / 1;
+    return s;
+}
+
+bool subsetSum(const int A[], int n, int sum) {
+    if (sum == 0) return true;
+
+    // subsetSum(A, n-1)
 }
 
 int main() {
-    cout << minCoins(11);
+    int n;
+    cin >> n;
+    cout << minCoinsDP(n);
     return 0;
 }
