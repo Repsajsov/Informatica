@@ -46,15 +46,21 @@ int longestIncreasingSubArray(const int A[], const int& n) {
     return maxLength;
 }
 
-// bool hasSubsetSum(int const A[], int const n, int const s) { return false; }
+int minCoins(const int n) {
+    if (n == 1) { return 1; }
+    if (n <= 0) { return 0; }
+
+    int a = 0, b = 0, c = 0;
+    if (n % 10 == 0) {
+        return minCoins(n - 10);
+    } else if (n % 5 == 0) {
+        return minCoins(n - 5);
+    } else {
+        return minCoins(n - 1);
+    }
+}
 
 int main() {
-    // int A[] = {3, 1, 4, 5, 2, 3, 6, 2, 8, 1, 7, 9, 9};
-    // int n = sizeof(A) / sizeof(int);
-    // cout << longestIncreasingSubArray(A, n);
-
-    int M[] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    int n = sizeof(M) / sizeof(int);
-    cout << fibonacciMemoization(n - 1, M);
+    cout << minCoins(11);
     return 0;
 }
