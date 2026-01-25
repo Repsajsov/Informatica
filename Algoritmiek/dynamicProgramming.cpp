@@ -75,19 +75,23 @@ int minCoinsHelper(const int n, int seen[]) {
 int minCoinsDP(const int n) {
     int s = n / 10;
     s += (n % 10) / 5;
-    s += (n % 5) / 1;
+    s += (n % 5);
     return s;
 }
 
 bool subsetSum(const int A[], int n, int sum) {
     if (sum == 0) return true;
+    if (n < 0) return false;
 
-    // subsetSum(A, n-1)
+    for (int i = n; i >= 0; i--) {
+        int newSum = sum - A[i];
+        if (subsetSum(A, i - 1, newSum)) return true;
+    }
+    return false;
 }
 
 int main() {
-    int n;
-    cin >> n;
-    cout << minCoinsDP(n);
+    int A[] = {2, 5, 7, 11, 2, 3, 4, 2, 123, 123};
+    cout << subsetSum(A, 9, 246);
     return 0;
 }
