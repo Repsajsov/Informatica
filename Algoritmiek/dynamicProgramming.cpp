@@ -90,8 +90,18 @@ bool subsetSum(const int A[], int n, int sum) {
     return false;
 }
 
+bool subsetSum2(const int A[], int n, int sum) {
+    if (sum == 0) return true;
+    if (n < 0) return false;
+
+    bool exclude = subsetSum2(A, n - 1, sum);
+
+    bool include = subsetSum2(A, n - 1, sum - A[n]);
+    return exclude | include;
+}
+
 int main() {
     int A[] = {2, 5, 7, 11, 2, 3, 4, 2, 123, 123};
-    cout << subsetSum(A, 9, 246);
+    cout << subsetSum2(A, 9, 247);
     return 0;
 }
