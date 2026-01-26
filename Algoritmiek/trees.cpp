@@ -6,10 +6,17 @@ struct node {
     node* rightNode;
 };
 
-void createTree() {};
+int treeHeight(node* root, int i = -1) {
+    if (!root) return i;
+    i++;
+    int leftHeight = treeHeight(root->leftNode, i);
+    int rightHeight = treeHeight(root->rightNode, i);
+    return (leftHeight > rightHeight) ? leftHeight : rightHeight;
+}
 
 int sumTree(node* root) {
     if (!root) return 0;
+
     int a = sumTree(root->leftNode);
     int b = sumTree(root->rightNode);
     return a + b + root->value;
@@ -17,19 +24,15 @@ int sumTree(node* root) {
 
 bool searchTree(node* root, int target) {
     if (!root) return false;
-    bool a = searchTree(root->leftNode, target);
-    bool b = searchTree(root->rightNode, target);
-    return (root->value == target || a || b) ? true : false;
+    if (root->value == target) return true;
+    return searchTree(root->leftNode, target) || searchTree(root->rightNode, target);
 }
 
 node* searchTree2(node* root, int target) {
     if (!root) return nullptr;
-    node* a = searchTree2(root->leftNode, target);
-    node* b = searchTree2(root->rightNode, target);
     if (root->value == target) return root;
-    else if (a) return a;
-    else if (b) return b;
-    return nullptr;
+    node* left = searchTree2(root->leftNode, target);
+    return left ? left : searchTree2(root->rightNode, target);
 }
 
 using namespace std;
@@ -49,7 +52,7 @@ int main() {
     root->leftNode->leftNode = new node;
     root->leftNode->leftNode->value = 6;
 
-    cout << searchTree2(root, 12)->value;
+    cout << treeHeight(root);
 
     return 0;
 }
