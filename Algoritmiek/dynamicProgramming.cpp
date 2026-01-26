@@ -100,8 +100,13 @@ bool subsetSum2(const int A[], int n, int sum) {
     return exclude | include;
 }
 
+int power(const int a, const int n) {
+    if (n == 0) return 1;
+
+    return power(a, n - 1) * a;
+}
+
 int main() {
-    int A[] = {2, 5, 7, 11, 2, 3, 4, 2, 123, 123};
-    cout << subsetSum2(A, 9, 247);
+    cout << power(2, 3);
     return 0;
 }
