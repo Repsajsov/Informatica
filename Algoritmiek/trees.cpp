@@ -96,10 +96,10 @@ void calculateSum(node* root) {
     root->sum = left + right + root->value;
 }
 
-bool inBalance(node* root) {
+bool isBalanced(node* root) {
     if (!root) return true;
-    if (!inBalance(root->leftNode)) return false;
-    if (!inBalance(root->rightNode)) return false;
+    if (!isBalanced(root->leftNode)) return false;
+    if (!isBalanced(root->rightNode)) return false;
     if (!root->leftNode || !root->rightNode) return true;
     return root->leftNode->sum == root->rightNode->sum;
 }
@@ -121,7 +121,7 @@ int main() {
     root->leftNode->leftNode = new node;
     root->leftNode->leftNode->value = 3;
 
-    cout << inBalance(root);
+    cout << isBalanced(root);
 
     return 0;
 }
