@@ -61,14 +61,17 @@ struct Graph {
 };
 
 int main() {
-    Graph g = Graph(8);
-    g.addEdgeUndirected(0, 2, 2);
-    g.addEdgeUndirected(2, 3, 5);
-    g.addEdgeUndirected(3, 4, 2);
-    g.addEdgeUndirected(4, 5, 0);
-    g.addEdgeUndirected(5, 6, 10);
-    g.addEdgeUndirected(6, 0, 2);
-    g.addEdgeUndirected(4, 7, 3);
+    Graph g = Graph(7);
+    g.addEdgeUndirected(0, 1, 12);
+    g.addEdgeUndirected(1, 2, 2);
+    g.addEdgeUndirected(2, 3, 12);
+    g.addEdgeUndirected(3, 4, 1);
+    g.addEdgeUndirected(4, 5, 10);
+    g.addEdgeUndirected(5, 0, 1);
+    g.addEdgeUndirected(3, 6, 3);
+
+    g.addEdgeUndirected(1,5,1);
+    g.addEdgeUndirected(2,4,1);
     int* distances = g.dijkstra(0);
     for (int i = 0; i < g.n; i++) { cout << distances[i] << " "; }
 
