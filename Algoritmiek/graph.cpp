@@ -15,7 +15,6 @@ struct Graph {
             for (int j = 0; j < n; j++) { adj[i][j] = 0; }
         }
     }
-
     void addEdgeDirected(int from, int to, int weight) { adj[from][to] = weight; }
     void addEdgeUndirected(int from, int to, int weight) {
         adj[from][to] = weight;
@@ -48,7 +47,7 @@ struct Graph {
             }
             if (vertex == -1) break;
             visited[vertex] = true;
-
+     
             for (int i = 0; i < n; i++) {
                 if (adj[vertex][i] != 0 && distances[vertex] != INT_MAX) {
                     int newDistance = distances[vertex] + adj[vertex][i];
