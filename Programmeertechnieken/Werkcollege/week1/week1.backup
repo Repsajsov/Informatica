@@ -1,0 +1,33 @@
+Opdracht 1:
+a) cat source1.capitals source2.capitals >> world.capitals
+b) rm source1.capitals source2.capitals
+c) awk -F ';' 'BEGIN {max = -1} {if(max <$4) {max = $4; regel=$0}} END {print regel}' cities.capitals
+
+Opdracht 2:
+a) mkdir ../europe
+b) awk -F ';' '$1=="Europe" {print $2";"$3}' world.capitals >> ../europe/europe.capitals
+c) awk -F ';' '$1=="Europe" {print $3";"$4}' cities.population >> ../europe/cities.population
+
+Opdracht 3:
+a) awk -F ';' 'BEGIN {max=-1} ($2=="Netherlands" && max < $4){max=$4; regel=$0} END {print regel}' cities.population 
+b) mkdir ../europe/the_netherlands
+c) awk -F ';' '$2=="Netherlands" {print $3";"$4}' cities.population >> ../europe/the_netherlands/summary.txt
+
+Opdracht 4:
+a) a=5;b=11
+b) a=5;b=11;sum=$((a+b));product=$((a*b))
+
+Opdracht 5, 6, 7
+#!/bin/bash
+
+a=$1
+b=$2
+
+echo a = $1
+echo b = $2
+echo a + b = $a + $b = $((a + b))
+echo a \* b = $a \* $b = $((a * b))
+echo a / b = $a / $b = $((a / b))
+echo a % b = $a % $b = $((a % b))
+
+Opdracht 7, 8 

@@ -1,0 +1,8 @@
+Eindhoven;209620
+Tilburg;199613
+Amsterdam;741636
+Rotterdam;598199
+The Hague;474292
+Groningen;181194
+Almere Stad;176432
+Utrecht;290529
