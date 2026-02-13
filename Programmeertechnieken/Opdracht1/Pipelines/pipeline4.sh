@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Te ingewikkeld nog..
+
 bzcat "$1" | awk -F ',' '
 NR > 1 && $2=="Personenauto" {
     merk = $3
