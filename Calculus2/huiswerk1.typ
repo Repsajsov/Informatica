@@ -133,9 +133,48 @@ $
                                                  quad ("Let" u = x^3 + 7 "and convert bounds and" d x "in terms of" u) \
                                                & = 1/3 integral_7^8 u^(-1/3) space d u
                                                  quad ("Simplify") \
-                                               & = 1/3 [3/2 u^(2/3) ]_7^8
+                                               & = 1/3 lr(size: #150%, [3/2 u^(2/3)])_7^8
                                                  quad ("Since" integral u^(-1/3) = 3/2 u^(2/3) + C) \
                                                & = #rect(stroke: 0.5pt, inset: 12pt)[$1/6(8^(2/3) - 7^(2/3))$]
 $
 
 == (c)
+$
+  integral_1^(sqrt(e)) sin(pi ln(x))/x space d x & = 1/pi integral_0^(pi/2) sin(u)/x space x d
+  quad ("Let" u=pi ln (x) "and convert bounds and" d x "in terms of" u) \
+  & = 1/pi lr(size: #250%, [-cos(u)])_0^(pi/2) quad ("Since" integral sin(u) space d u = -cos(u) + C ) \
+  &= 1/pi (0 - (-1) ) = #rect(stroke: 0.5pt, inset: 6pt)[$1/pi$]
+$
+
+#pagebreak()
+
+= Exercise 3
+
+Calculate intersections first:
+$
+          y^2 & = 2y^2 - y -2 \
+              & <==> \
+         -y^2 & = -y - 2 \
+              & <==> \
+  y^2 - y - 2 & = 0 \
+              & <==> \
+   (y+1)(y-2) & = 0
+$
+Intersections on $y=-1$ or $y=2$. Check which line is greater in the domain $[-1, 2]$. Let $y=0$ then:
+$
+  x = y^2 = 0 "and" x = 2y^2 - y - 2 = -2
+$
+Thus $y^2$ is greater than $2y^2 - y - 2$ in the domain $[-1, 2]$, write the integral:
+$
+  integral_(-1)^2 y^2 - 2y^2 + y + 2 space d y & = lr(size: #150%, [y^3/3 - (2y^3)/3 +y^2/2 + 2y]_(-1)^2)
+                                                 quad ("Use reverse power rule for all terms") \
+                                               & = (8/3 -16/3 + 4/2 + 4) - (-1/3 +2/3 + 1/2 -2) \
+                                               & = #rect(stroke: 0.5pt, inset: 12pt)[$9/2$]
+$
+Rough sketch:
+#image("sketch.jpeg", width: 70%)
+
+
+
+
+
