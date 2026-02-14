@@ -7,7 +7,7 @@
 #grid(
   columns: (1fr, auto, 1fr),
   align: (left, center, right),
-  [Jasper Vos \ s2911159], text(size: 17pt, weight: "bold")[Calculus 2], [Homework 1 \ 2026-02-07],
+  [JASPER VOS \ s2911159], text(size: 17pt, weight: "bold")[Calculus 2], [Homework 1 \ 2026-02-07],
 )
 
 #show heading: it => {
@@ -60,10 +60,82 @@ $
   & =ln x(x^4/4 + x^2/2) - integral (x^3/4 +x/2) space d x quad ("Simplify") \
   & = ln x(x^4/4 + x^2/2) - (x^4/16 + x^2/4) + C
   quad ("Use reverse power rule for both terms") \
-  & = #rect(stroke: 0.5pt, inset: 6pt)[ $(x^4 4 ln x + x^2 8 ln x - x^4 + 4x^2) / 16 + C$ ]
+  & = #rect(stroke: 0.5pt, inset: 12pt)[ $(x^4 4 ln x + x^2 8 ln x - x^4 + 4x^2) / 16 + C$ ]
 $
-
+#pagebreak()
 == (d)
 $
-  
+  integral cos^4(x) space d x & = integral (cos^2(x))^2 space d x \
+  & = integral ((cos(2x) + 1)/2 )^2 space d x \
+  & = integral (cos^2(2x))/4 + (cos(2x))/2 + 1/4 space d x \
+  & = integral cos(4x)/8 + 1/8 + cos(2x)/2 + 1/4 space d x \
+  & = 1/8integral cos(4x) space d x
+  + 1/8 integral 1 space d x
+  + 1/2 integral cos(2x) space d x
+  + 1/4 integral 1 space d x \
+  "Let's calculate all terms, first term:" \
+  1/8 integral cos(4x) space d x & = integral cos(u) space (d u) /4
+  quad ("Since" u = 4x ==> d x = (d u)/4) \
+  & = 1/32 sin(u) + C_1
+  quad ("Since" integral cos(u) = sin(u) + C) \
+  & = 1/32 sin(4x) + C_1
+  quad ("Substitute" u = 4x) \
+  \
+  "Second term:" \
+  1/8 integral 1 space d x & = x/8 + C_2
+  quad ("Since" integral 1 space d x = x + C) \
+  \
+  "Third term:" \
+  1/2 integral cos(2x) space d x & = 1/2 integral cos(u) space (d u)/2
+  quad ("Since" u = 2x ==> d x = (d u)/2) \
+  & = 1/4 sin(u) + C_3
+  quad ("Since" integral cos(u) = sin(u) + C) \
+  & = 1/4sin(2x) + C_3
+  quad ("Substitute" u = 2x) \
+  \
+  "Fourth term:" \
+  1/4 integral 1 space d x & = x/4 + C_4
+  quad ("Since" integral 1 space d x = x + C ) \ \
+  "Sum all the terms: "\
+  integral cos^4(x) space d x &= #rect(stroke: 0.5pt, inset: 12pt)[$1/32 sin(4x) + x/8 + 1/4 sin(2x) + x/4 + C$]quad ("With" C = C_1 + C_2 + C_3 + C_4)
 $
+
+#pagebreak()
+= Exercise 2
+
+== (a)
+
+Divide integral in two parts:
+$
+  integral_(-2)^2 (x+3)sqrt(4-x^2) space d x & =
+                                               integral_(-2)^2 x sqrt(4-x^2) space d x +
+                                               3 integral_(-2)^2 sqrt(4-x^2) space d x \
+$
+Notice that the first term looks like an uneven function. \
+Check if $f(-x) = -f(x)$ for $f(x) = x sqrt(4-x^2)$ :
+$
+  f(-x) & = (-x)sqrt(4-(-x)^2) = -x sqrt(4-x^2) \
+  -f(x) & = -x sqrt(4-x^2) \
+$
+Since $f$ uneven $==> integral_(-2)^2 x sqrt(4-x^2) space d x= 0$ \ \
+Notice that the second term is a semi-circle. The integral could be seen as:
+$
+  3 (( pi dot 2^2)/2) = 6 pi quad ("Since surface semi-circle" => pi dot r^2 "with" r=2)
+$
+The range of the integral is equal to the range of the semi-circle and thus:
+$
+  integral (x+3)sqrt(4 - x^2) space d x = #rect(stroke: 0.5pt, inset: 6pt)[$6 pi$]
+$
+
+== (b)
+$
+  integral_0^1 (x^2)/(x^3 + 7)^(1/3) space d x & = integral_7^8 x^2/u^(1/3) space (d u)/(3x^2)
+                                                 quad ("Let" u = x^3 + 7 "and convert bounds and" d x "in terms of" u) \
+                                               & = 1/3 integral_7^8 u^(-1/3) space d u
+                                                 quad ("Simplify") \
+                                               & = 1/3 [3/2 u^(2/3) ]_7^8
+                                                 quad ("Since" integral u^(-1/3) = 3/2 u^(2/3) + C) \
+                                               & = #rect(stroke: 0.5pt, inset: 12pt)[$1/6(8^(2/3) - 7^(2/3))$]
+$
+
+== (c)
