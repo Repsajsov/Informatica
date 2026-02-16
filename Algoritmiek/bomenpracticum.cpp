@@ -121,21 +121,16 @@ bool isbzboom_p(knoop* ingang) {
     if (!ingang) return true;
     knoop* ouder = nullptr;
 
-    if (ingang->links) {
-        knoop* kleiner = grootstekleinere(ingang->links, ouder);
-        if (kleiner && kleiner->info >= ingang->info) return false;
-    }
+    knoop* kleiner = grootstekleinere(ingang->links, ouder);
+    if (kleiner && kleiner->info >= ingang->info) return false;
 
-    if (ingang->rechts) {
-        knoop* groter = kleinstegrotere(ingang->rechts, ouder);
-        if (groter && groter->info <= ingang->info) return false;
-    }
+    knoop* groter = kleinstegrotere(ingang->rechts, ouder);
+    if (groter && groter->info <= ingang->info) return false;
 
-    isbzboom_p(ingang->links) && isbzboom_p(ingang->rechts);
+    return isbzboom_p(ingang->links) && isbzboom_p(ingang->rechts);
 }
 
 // Opgave 11
-
 
 int main() {
     knoop* a = new knoop;
