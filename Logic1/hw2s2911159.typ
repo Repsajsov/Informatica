@@ -8,7 +8,7 @@
 #grid(
   columns: (1fr, auto, 1fr),
   align: (left, center, right),
-  [Jasper Vos \ s2911159], text(size: 18pt, weight: "bold")[Logic 1], [Huiswerk 1 \ 2026-02-07],
+  [Jasper Vos \ s2911159], text(size: 18pt, weight: "bold")[Logic 1], [Huiswerk 2 \ 17-02-2026],
 )
 
 #show heading: it => {
