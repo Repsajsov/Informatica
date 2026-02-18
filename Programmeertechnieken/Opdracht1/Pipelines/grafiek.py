@@ -1,7 +1,7 @@
 import sys
 import matplotlib.pyplot as plt
 
-
+# Stuur alle stdin naar lists die plt.bar goed kan lezen
 dagen = []
 aantallen = []
 for line in sys.stdin:
@@ -10,5 +10,8 @@ for line in sys.stdin:
     aantallen.append(int(aantal))
 
 
+# Maak de grafiek
 plt.bar(dagen, aantallen)
+
+# Laat de grafiek zien
 plt.show()
